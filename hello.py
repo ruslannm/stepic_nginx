@@ -1,9 +1,16 @@
- def app(environ, start_response): 
-     print('hello world')
-     start_response('200 OK', [('Content-Type', 'text\plain')]) 
-     qs = "\r\n".join(environ['QUERY_STRING'].split("&"))
-     print (qs)
-     return qs
+def app(env, start_response): 
+    start_response('200 OK', [('Content-Type', 'text/plain')]) 
+    resp = env['QUERY_STRING'].split('&') 
+    resp = [item+'\n' for item in resp] 
+    return resp 
+
+#
+# def app(environ, start_response): 
+#     print('hello world')
+#     start_response('200 OK', [('Content-Type', 'text\plain')]) 
+#     qs = "\r\n".join(environ['QUERY_STRING'].split("&"))
+#     print (qs)
+#     return qs
 
 # from urlparse import parse_qs
 
